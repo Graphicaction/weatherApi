@@ -6,6 +6,7 @@
       <meta http-equiv="X-UA-Compatible" content="ie=edge">
       <title>Weather App</title>
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
       <link rel="stylesheet" href="assets/css/style.css">
     </head>
     
@@ -18,10 +19,26 @@
         </header>
         <div class="container">
             <div class="row">
-                <div class="col-3 listCities">
-
+                <div class="col-md-3 col-lg-3 col-sm-2 listCities mt-3">
+                    <div class="my-2">
+                        <form>
+                            <div class="input-group">
+                                <input class="form-control" id="searchText" type="search" placeholder="Search" aria-label="Search">
+                                <button type="button" id="btnSearch" class="btn btn-primary" onclick="searchCity()">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link" id="city0" data-toggle="pill" href="#" role="tab">New York</a>
+                        <a class="nav-link" id="city1" data-toggle="pill" href="#" role="tab">Orlando</a>
+                        <a class="nav-link" id="city2" data-toggle="pill" href="#" role="tab">Chicago</a>
+                        <a class="nav-link" id="city3" data-toggle="pill" href="#" role="tab">Dallas</a>
+                    </div>
                 </div>
-                <div class="col-9">
+
+                <div class="col-lg-9 col-md-9 col-sm-9">
                     <div class="row">
                         <div class="col cityDetails m-3">
                             <div class="cityDate h1 p-3"></div>
@@ -37,37 +54,37 @@
                         </div>
                         <div class="row">
                             <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <div class="card-header">Header</div>
+                                <h5 class="card-title date0"></h5>
                                 <div class="card-body">
-                                  <h5 class="card-title">Primary card title</h5>
+                                  
                                   <p class="card-text"></p>
                                 </div>
                             </div>
                             <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <div class="card-header">Header</div>
+                                <h5 class="card-title date1"></h5>
                                 <div class="card-body">
-                                  <h5 class="card-title">Primary card title</h5>
+                                  
                                   <p class="card-text"></p>
                                 </div>
                             </div>
                             <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <div class="card-header">Header</div>
+                                <h5 class="card-title date2"></h5>
                                 <div class="card-body">
-                                  <h5 class="card-title">Primary card title</h5>
+                                  
                                   <p class="card-text"></p>
                                 </div>
                             </div>
                             <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <div class="card-header">Header</div>
+                                <h5 class="card-title date3"></h5>
                                 <div class="card-body">
-                                  <h5 class="card-title">Primary card title</h5>
+                                  
                                   <p class="card-text"></p>
                                 </div>
                             </div>
                             <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <div class="card-header">Header</div>
+                                <h5 class="card-title date4"></h5>
                                 <div class="card-body">
-                                  <h5 class="card-title">Primary card title</h5>
+                                  
                                   <p class="card-text"></p>
                                 </div>
                             </div>
@@ -78,11 +95,12 @@
             </div>
         </div>
 
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.js"></script>
         <script src="assets/javascript/script.js"></script>
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim-min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
