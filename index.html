@@ -22,6 +22,7 @@
                 <div class="col-md-3 col-lg-3 col-sm-2 listCities mt-3">
                     <div class="my-2">
                         <form>
+                            <label class="h5 mr-2">Search for city:</label>
                             <div class="input-group">
                                 <input class="form-control" id="searchText" type="search" placeholder="Search" aria-label="Search">
                                 <button type="button" id="btnSearch" class="btn btn-primary" onclick="searchCity()">
@@ -30,69 +31,51 @@
                             </div>
                         </form>
                     </div>
-                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link" id="city0" data-toggle="pill" href="#" role="tab">New York</a>
-                        <a class="nav-link" id="city1" data-toggle="pill" href="#" role="tab">Orlando</a>
-                        <a class="nav-link" id="city2" data-toggle="pill" href="#" role="tab">Chicago</a>
-                        <a class="nav-link" id="city3" data-toggle="pill" href="#" role="tab">Dallas</a>
+                    <div id="cityList" class="listDiv text-center mt-4 border">
                     </div>
                 </div>
 
                 <div class="col-lg-9 col-md-9 col-sm-9">
                     <div class="row">
-                        <div class="col cityDetails m-3">
+                        <div class="col-lg-10 col-md-10 col-sm-10 cityDetails m-3">
                             <div class="cityDate h1 p-3"></div>
                             <div class="temperature p-3"></div>
                             <div class="humidity p-3"></div>
                             <div class="windSpeed p-3"></div>
                             <div class="uvIndex p-3"></div>          
                         </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 mt-3">
+                            <button class="btn btn-primary my-1" type="button" id="cBtn" disabled onclick="tempCelsius()">&#8451</button>
+                            <button class="btn btn-primary my-1" type="button" id="fBtn" onclick="tempFahrenheit()">&#8457</button>
+                        </div>
                     </div>
                     <div class="row fiveDay m-3">
                         <div class="row">
                             <h1>5-Day Forecast:</h1> <hr>
                         </div>
-                        <div class="row">
-                            <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <h5 class="card-title date0"></h5>
-                                <div class="card-body">
-                                  
-                                  <p class="card-text"></p>
-                                </div>
-                            </div>
-                            <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <h5 class="card-title date1"></h5>
-                                <div class="card-body">
-                                  
-                                  <p class="card-text"></p>
-                                </div>
-                            </div>
-                            <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <h5 class="card-title date2"></h5>
-                                <div class="card-body">
-                                  
-                                  <p class="card-text"></p>
-                                </div>
-                            </div>
-                            <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <h5 class="card-title date3"></h5>
-                                <div class="card-body">
-                                  
-                                  <p class="card-text"></p>
-                                </div>
-                            </div>
-                            <div class="card text-white bg-primary m-3" style="max-width: 10rem;">
-                                <h5 class="card-title date4"></h5>
-                                <div class="card-body">
-                                  
-                                  <p class="card-text"></p>
-                                </div>
-                            </div>
+                        <div class="row" id="fiveDayForecast">
                         </div>
-                                  
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="noCityModal" tabindex="-1" role="dialog" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title">API Message</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p>No results Found. Please enter a valid city!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
         </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
