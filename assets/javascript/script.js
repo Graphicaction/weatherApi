@@ -5,12 +5,11 @@ var cityNotExist = false;
 var isCelsius = true;
 // The URL we need to query the database
 
-var queryUVI = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey;
 var currentDay = moment().format('L'); 
 
 init();
 
-// We then created an AJAX call for temperature humidity and windspeed
+// function when the page is loaded
 function init(){
     clear();
     cityDetails();
@@ -30,6 +29,7 @@ function searchCity() {
 //function to display city details
 function cityDetails() {
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=metric&appid=" + APIKey;
+    var queryUVI = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey;
     $.ajax({
         url: queryURL,
         method: "GET"
@@ -65,7 +65,35 @@ function UVIndex(uviUrl) {
         url: uviUrl,
         method: "GET"
         }).then(function(res) {
-            $(".uvIndex").text("UV Index: " + res.value);
+            var uvValue = Math.floor(res.value);
+            var uvScale = '';
+            if(uvValue >= 1 && uvValue <= 2){
+                uvScale = 'low';
+            } else if (uvValue >= 3 && uvValue <= 5){
+                uvScale = 'moderate';
+            } else if(uvValue >= 6 && uvValue <= 7){
+                uvScale = 'high';
+            } else if(uvValue >= 8 && uvValue <= 10){
+                uvScale = 'very high';
+            } else if(uvValue >= 11){
+                uvScale = 'extreme';
+            }
+            switch (uvScale) { 
+                case 'low': 
+                    $(".uvIndex").text(res.value).css("background-color", '#33FFC1').css('color', 'black');
+                    break;
+                case 'moderate': 
+                    $(".uvIndex").text(res.value).css("background-color", '#FFE033').css('color', 'black');
+                    break;
+                case 'high': 
+                    $(".uvIndex").text(res.value).css("background-color", '#FFB533').css('color', 'black');
+                    break;		
+                case 'very high': 
+                    $(".uvIndex").text(res.value).css("background-color",'#FF3C33').css('color', 'white');
+                    break;
+                case 'extreme':
+                    $(".uvIndex").text(res.value).css("background-color",'#A50CB3').css('color', 'white');
+            }
     });
 }
 //Display five day forecast
@@ -121,7 +149,7 @@ function tempCelsius() {
     fBtn.disabled = false;
     cityDetails();
 }
-
+//Updating cities array depending on city is already in the list or not
 function renderCity() {
     var cityInList = false;
     for(let i = 0; i< cities.length; i++){
@@ -136,26 +164,24 @@ function renderCity() {
         cities.push(city);
         displayCities();
     }
-       // localStorage.setItem("cities", JSON.stringify(cities));
 }
 //making and displaying list
 function displayCities() {
-    var li = $("<p>").attr("class", "border p-3 mb-0").text(city);
+    city = city.charAt(0).toUpperCase() + city.slice(1);
+    //setting anchor tag with classes and onClick calling a function with id as a parameter
+    var li = $("<a>").attr("class", "border px-5 p-3 mb-1 text-center").attr('href', '#').attr('onClick', 'openClickedCity(id)').attr('id', city).css('display','block').text(city);
     $("#cityList").append(li);
+}
+//function when a city is clicked on search history
+function openClickedCity(id){
+    city = id;
+    cityDetails();
 }
 //function to display the search history and store into local storage
 function searchHistory(){
     clear();
-    // Get stored todos from localStorage
-    // var storedCities = JSON.parse(localStorage.getItem("cities"));
-    // If todos were retrieved from localStorage, update the todos array to it
-    // if (storedCities !== null) {
-    //     cities = storedCities;
-    // }
-    // Render city List
-    // displayCities();
 }
+//Function to clear the city list
 function clear() {
     cities = [];
-    // localStorage.setItem("cities", JSON.stringify(cities));
 }
